@@ -1,0 +1,39 @@
+<ColPopup>:
+    title: 'Select a colour you want to graw with!'
+    size_hint: None, None
+    size: 400,400
+    auto_dismiss: False
+    ColPckr:
+        on_color: app.root.selected_color = self.color
+        Button:
+            text: 'Select colour'
+            pos_hint: {'center_x': .76, 'y': .03}
+            size_hint: None, None
+            size: 100, 50
+            on_press: root.dismiss()
+
+<MyPaintApp>:
+    canvas:
+        Color:
+            rgba: 1,1,1,1
+        Rectangle:
+            size: self.size
+            pos: self.pos
+    BoxLayout:
+        pos: 800,500
+        Label:
+            pos: 700,400
+            text: "width: {:.1f}".format(width_slider.value)
+        Slider:
+            id: width_slider
+            min: 2
+            max: 10
+            value: 2
+            on_value:pass
+    BoxLayout:
+        pos: 700,500
+        Button:
+            size_hint: None, None
+            size: 100,100
+            text: 'Select colour'
+            on_press: root.select_ColPckr(*args)
